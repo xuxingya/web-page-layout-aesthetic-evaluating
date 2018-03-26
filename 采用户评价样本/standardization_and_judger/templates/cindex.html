@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}分类{% endblock %}
+
+{% block content %}
+
+<div id="container" class="container-fluid">
+  <div id="login">
+    <div class="page-header">
+      <h1>请填写您的个人信息</h1>
+      <p>分类问卷</p>
+    </div>
+
+    <form action="" method="post" role="form">
+      <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" class="form-control" id="username" name="username">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="toggle-login"> 我要继续上次问卷
+        </label>
+      </div>
+      <div class="form-group gender">
+        <label for="gender">性别</label>
+        <select class="form-control" id="gender" name="gender">
+          <option value=0>男</option>
+          <option value=1>女</option>
+        </select>
+      </div>
+      <div class="form-group age">
+        <label for="age">性别</label>
+        <select class="form-control" id="age" name="age">
+          <option value=0>18-22</option>
+          <option value=1>23-29</option>
+          <option value=2>30-39</option>
+          <option value=3>40以上</option>
+        </select>
+      </div>
+      {% csrf_token %}
+      <input class="btn btn-default start" value="开始/继续分类" type="submit">
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

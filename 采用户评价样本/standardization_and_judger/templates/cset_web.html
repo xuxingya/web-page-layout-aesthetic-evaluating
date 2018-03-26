@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}分类{% endblock %}
+
+{% block content %}
+
+<div id="container" class="container-fluid">
+  <div id="login">
+    <div class="page-header">
+      <p>请选择您对这幅图的看法，选左为喜欢，选右为不喜欢.</p>
+    </div>
+  </div>
+  <div class="row" style="text-align: center;">
+    <img src="/media/{{c.web.grey_pic}}" width=100%/>
+    <div class="btn-group" style="margin-top: 15px;">
+      <a class="btn btn-danger b0" href="{% url classify.views.set_web %}?cid={{c.id}}&type=0&uid={{uid}}">喜欢</a>
+      <a class="btn btn-default b1" href="{% url classify.views.set_web %}?cid={{c.id}}&type=1&uid={{uid}}">不喜欢</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript" charset="utf-8">
+function set_web(t){
+  $('.b'+t).css('box-shadow', 'inset 1px 1px 3px #444');
+  setTimeout(function(){
+    window.location.href = "{% url classify.views.set_web %}?cid={{c.id}}&uid={{uid}}&type="+t;
+  }, 200);
+}
+
+$(document).ready(function(){
+  $(document).bind('keydown', function(e){
+    switch( event.keyCode){
+      case 37: set_web(0); break;
+      case 39: set_web(1); break;
+    }
+  });
+});
+</script>
+{% endblock %}

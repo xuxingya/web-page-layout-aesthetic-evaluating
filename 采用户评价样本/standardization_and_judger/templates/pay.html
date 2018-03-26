@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body onload="submitForm()">
+<form action="http://116.228.232.140/pay_gateway_wap_zfwg/pay.do" method="POST" name="form">
+		<input type="hidden" name="VERSION" value="{{pay.version}}" />
+		<input type="hidden" name="MERCHANTID" value="{{pay.code}}" />
+		<input type="hidden" name="ORDERSEQ" value="{{order_seq}}" /> <!--TODO-->
+		<input type="hidden" name="ORDERREQTRANSEQ" value="{{trans_seq}}" />
+		<input type="hidden" name="ORDERDATE" value="{{order_date}}" />
+		<input type="hidden" name="ORDERAMOUNT" value="{{money}}" /> <!--TODO-->
+		<input type="hidden" name="PRODUCTAMOUNT" value="{{money}}" /> <!--TODO-->
+		<input type="hidden" name="ATTACHAMOUNT" value="0" />
+		<input type="hidden" name="CURTYPE" value="RMB" />
+		<input type="hidden" name="ENCODETYPE" value="1" />
+		<input type="hidden" name="MERCHANTURL" value="http://115.28.221.47:8001/dianxin/zfsuccess.html" /> <!--TODO-->
+		<input type="hidden" name="BACKMERCHANTURL" value="{{backend_url}}" /> <!--TODO-->
+		<input type="hidden" name="BANKCODE" value="7987" />
+		<input type="hidden" name="ATTACH" value="{{ip}}" />
+		<input type="hidden" name="BUSICODE" value="0001" />
+		<input type="hidden" name="TMNUM" value="{{user}}" /> <!--TODO-->
+		<input type="hidden" name="CUSTOMERID" value="{{user}}" /> <!--TODO-->
+    {% if not isp %}
+		<input type="hidden" name="PRODUCTID" value="01" />
+		<input type="hidden" name="SUBPRODUCTID" value="04" />
+    {% else %}
+		<input type="hidden" name="PRODUCTID" value="02" />
+    {% endif %}
+		<input type="hidden" name="PRODUCTDESC" value="{{product_desc}}" /> <!--TODO-->
+		<input type="hidden" name="MAC" value="{{mac}}" /> <!--TODO-->
+	</form>
+	<script type="text/javascript">
+	function submitForm() {
+    alert("{{trans_seq}}");
+		document.querySelector("form[name=form]").submit();
+	}
+	</script>
+</body>
+</html>

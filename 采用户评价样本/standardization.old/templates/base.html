@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+     <style type="text/css" media="all">
+           #login, #result {
+                 max-width: 730px;
+                 margin: 0 auto;
+                 margin-bottom: 20px;
+           }
+          
+          #container {
+                margin: 0px 15px;
+          }
+
+          .wrapper {
+              float: left;
+          }
+          
+          .wrapper-left, .wrapper-right{
+              width: 50%; 
+              width: calc(45%-30px);
+              padding: 0 0px;
+              padding-bottom: 15px;
+          }
+
+          .wrapper.equal{
+              width: 6%;
+          }
+          #container img{
+            width: 100%; 
+          }
+          .sv b{
+            color: #FF4000;
+          }
+
+          #container .equal{
+            text-align: center;
+            vertical-align: middle;
+          }
+
+	  .fixed.counter{
+	    position: fixed;
+	    bottom: -2px;
+	    right: 500px;
+          }
+
+	  .level-1{
+            color: #777;
+          }
+          .level-2{
+	    color: green;
+            font: 15px;
+          }
+          .level-3{
+            color: blue;
+            font: 16px;
+          }
+          .level-4{
+            color: purple;
+            font: 17px;
+	  }
+	  .level-5{
+	    color: orange;
+	    font: 18px;
+	  }
+          .level-6{
+	    color: #FFD700;
+	    font: 19px;
+          }
+	  .level-7{
+	    color: #C5B358;
+	    font: 20px;
+	  }
+    </style>
+  </head>
+
+  <body>
+   
+    {% block content %}
+    {% endblock %}
+
+    <script src="http://a.tbcdn.cn/libs/jquery/1.7.1/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/ICanHaz.min.js" type="text/javascript" charset="utf-8"></script>
+    {% block extra_scripts %}
+    {% endblock %}
+
+  </body>
+
+</html>

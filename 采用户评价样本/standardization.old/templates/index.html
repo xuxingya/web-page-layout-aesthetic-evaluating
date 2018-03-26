@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}问卷{% endblock %}
+
+{% block content %}
+
+<div id="container" class="container-fluid">
+  <div id="login">
+    <div class="page-header">
+      <h1>请填写您的个人信息</h1>
+    </div>
+
+    <div role="form">
+      <div class="form-group">
+        <label for="username">用户名</label>
+        <input type="text" class="form-control" id="username">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="toggle-login"> 我要继续上次问卷
+        </label>
+      </div>
+      <div class="form-group gender">
+        <label for="gender">性别</label>
+        <select class="form-control" id="gender">
+          <option value=0>男</option>
+          <option value=1>女</option>
+        </select>
+      </div>
+      <div class="form-group age">
+        <label for="age">性别</label>
+        <select class="form-control" id="age">
+          <option value=0>18-22</option>
+          <option value=1>23-29</option>
+          <option value=2>30-39</option>
+          <option value=3>40以上</option>
+        </select>
+      </div>
+
+      <button class="btn btn-default start">开始问卷</button>
+      <button class="btn btn-default continue hidden">继续问卷</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_scripts %}
+{% load rawtags %}
+{% raw %}
+<script id="surver" type="text/html">
+  <div class="sv" data-cid={{cid}}>
+    <!--div class="page-header" style="opacity: 0.3;">
+      <h1>哪一张比较<b>{{type}}</b>?</h1>
+      <p class="help-block">你可以用“←”选择左边的截图，用“↑”表示相等，或者“→”选择右边的截图</p>
+      <p class="help-block">还剩约{{count}}个任务(估计值) 
+	<img src="/static/css/ajax-loader.gif" class="load-img" style="display:none; width:25px; height:25px;"/>
+      </p>
+    </div-->
+    <div class="row">
+      <div class="wrapper-left wrapper order-0">
+        <a href="javascript:set_order(0)">
+          <img src="{{subj_url}}">
+        </a>
+      </div>
+      <!--div class="wrapper equal order-1">
+        <a href="javascript:set_order(1)" class="btn btn-default">相等</a>
+      </div-->
+      <div class="wrapper-right wrapper order-2">
+        <a href="javascript:set_order(2)">
+          <img src="{{obj_url}}"> 
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="fixed counter panel panel-default">
+	<div class="panel-body">
+		<p>您已经完成<span id="count">0</span>张比较，可获得<span id="reward"></span>!</p>
+		<a href="javascript:clear();" class="btn btn-danger">归零</a>
+	</div>
+  </div>
+{% endraw %}
+</script>
+
+<script id="loading" type="text/html">
+  <div class="container">
+    <h2>载入问卷中，请稍后</h2>
+  </div>
+</script>
+
+<script id="result" type="text/html">
+  {% raw %}
+  <div class="container">
+    <div class="page-header">
+      <h1>您的问卷已完成，再次感谢您的协助</h1>
+      <p class="help-block">凭您的用户名 <b>{{uid}}</b> 可以向问卷发起者索要一份礼物。</p>
+    </div>
+    <h2>排序结果</p>
+    <ul class="list-group">
+      {{#data}}
+        <li class="list-group-item">{{name}}</li>
+      {{/data}}
+    </ul>
+  </div>
+  {% endraw %}
+</script>
+
+<script src="/static/js/index.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}
